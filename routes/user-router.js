@@ -4,13 +4,13 @@ const userRouter = require('express').Router();
 
 userRouter.route("/")
 .get (userController.getAll)
-
 .post(userController.create)
 
 
 userRouter.route('/:id')
 .put(userController.update)
 .get(userController.getById)
+.delete(userController.delete)
 
 
 
