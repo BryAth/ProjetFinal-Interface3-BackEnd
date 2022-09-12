@@ -17,7 +17,7 @@ const userController = {
 
     getById : async(req,res) => {
         const id = req.params.id
-        const users = await User.findById(id);
+        const user = await User.findById(id);
 
         if(!user) {
             res.status(404).json('User non trouvé ! ')

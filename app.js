@@ -1,8 +1,22 @@
+require("dotenv-flow").config()
+
 const express = require("express") // Initialisation d'express
 
 const app = express();
 
-const {port} = process.env
+const {DB_CONNECTION,port} = process.env
+
+
+const mongoose = require ('mongoose')
+
+app.use(async(req,res,next) => {
+    await mongoose.connect(DB_CONNECTION)
+    
+    console.log('Connection réussie ! ')
+    next();
+})
+
+
 
 const router = require("./routes") //L'app utilisera ce chemin afin d'exploiter les routes
 
@@ -10,9 +24,6 @@ const router = require("./routes") //L'app utilisera ce chemin afin d'exploiter 
 app.use(express.json())
 
 
-// app.use("/",(req,res) =>{
-//     res.send("Salut")
-// }) // Main page qui utilisera les routes 
 
 
 app.use("/api",router)

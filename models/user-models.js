@@ -32,7 +32,8 @@ const UserSchema =  new Schema ({
         type : String,
         required : true,
         enum : ["User" , "Admin"],
-        trim : true
+        trim : true,
+        default : "User"
     }
 },{
     collection : 'User',
