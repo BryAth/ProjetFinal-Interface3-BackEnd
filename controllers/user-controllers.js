@@ -1,6 +1,6 @@
 const User = require ('../models/user-models')
 
-const userMapper= user => new UserDTO(user.id,user.pseudo,user.firstname,user.lastname,user.email);
+const userMapper= user => new UserDTO(user.id,user.pseudo,user.firstname,user.lastname,user.password,user.email);
 
 
 
@@ -42,9 +42,9 @@ const userController = {
     update : async(req,res) => {
         const id = req.params.id;
 
-        const {pseudo,firstname,lastname,email} = req.body
+        const {pseudo,firstname,lastname,password,email} = req.body
 
-        const userUpdated = await User.findByIdAndUpdate(id,{pseudo,firstname,lastname,email},{returnDocument:'after'})
+        const userUpdated = await User.findByIdAndUpdate(id,{pseudo,firstname,lastname,password,email},{returnDocument:'after'})
 
         res.status(200).json(userUpdated)
     },

@@ -12,7 +12,7 @@ const GeantController = {
     getById : async(req,res) => {
         const id = req.params.id
 
-        const geants = await Geant.find(id)
+        const geants = await Geant.findById(id)
         res.status(200).json(geants)
     },
     create : async (req,res) => {
@@ -30,10 +30,10 @@ const GeantController = {
     update : async(req,res) => {
         const id = req.params.id;
 
-        const {nom,anneeCreation,poids,img} = req.body
+        const {nom,anneeCreation,poids,taille,img} = req.body
 
         const geantUpdated = await Geant.findByIdAndUpdate(id,{
-            nom , anneeCreation,poids, img
+            nom , anneeCreation,poids,taille, img
         },{returnDocument :'after'})
 
         res.status(200).json(geantUpdated)
@@ -41,12 +41,13 @@ const GeantController = {
 
     delete : async(req,res) => {
         const id = req.params.id
+    
         const geantToDelete = await Geant.findOneAndDelete(id);
 
         if(!geantToDelete){
             res.status(404)
         }
-        res.status(200).json("Géant bien supprimé")
+        res.status(200).json(`Géant bien supprimé`)
     }
 }
 

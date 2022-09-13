@@ -1,10 +1,12 @@
 const userController = require("../controllers/user-controllers")
+const userValidator = require ("../validators/user-validators")
+const bodyValidation =  require ("../middlewares/bodyValidator");
 
 const userRouter = require('express').Router();
 
 userRouter.route("/")
 .get (userController.getAll)
-.post(userController.create)
+.post(bodyValidation(userValidator),userController.create)
 
 
 userRouter.route('/:id')

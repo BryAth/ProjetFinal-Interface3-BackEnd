@@ -25,6 +25,11 @@ const geantSchema = new Schema ({
         trim : true
 
     },
+    taille : {
+        type : String,
+        require : true,
+        trim : true
+    },
     description : {
         type : String,
         require : true,
